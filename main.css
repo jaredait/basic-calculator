@@ -1,0 +1,44 @@
+:root{
+    --corners: 20px;
+    --border: 3px solid white;
+}
+body{
+    background-color: black;
+    color: white;
+}
+.case{
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 400px;
+    max-width: 400px;
+    max-height: 1000px;
+    border: var(--border);
+    border-radius: var(--corners);    
+}
+.display{
+    background-color: darkslateblue;
+    border-radius: var(--corners) var(--corners) 0 0;
+    text-align: right;
+    padding: 0.5rem;
+}
+.pad{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(3rem, 1fr));
+}
+.buttons{
+    border: var(--border);
+    border-radius: var(--corners);
+    width: 2rem;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.numbers{
+    display: grid;
+    gap: 2px;
+}
+
+
