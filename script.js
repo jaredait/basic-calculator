@@ -2,6 +2,8 @@ let lastValue = null;
 let currentValue = null;
 let currentSymbol = null;
 let lastSymbol = null;
+const display = document.querySelector('#display');
+let clearDisplay = false;
 
 // Add eventListeners to the number keys
 const numberKeys = Array.from(document.getElementsByClassName('number'));
@@ -13,40 +15,46 @@ symbolKeys.forEach(key => key.addEventListener('click', storeSymbol));
 
 // FUNCTIONS
 function printOnDisplay(e){
+    if(clearDisplay){
+        display.textContent = '';
+        clearDisplay = false;
+    }
     let pressedKey = e.target;
-    let display = document.getElementById('display');
     display.textContent += pressedKey.dataset.type;
     currentValue = display.textContent;
 }
 function storeSymbol(e){
-    lastSymbol = currentSymbol;
-    currentSymbol = e.target.dataset.type;
-    if(!lastValue){
-        lastValue = currentValue;
-        document.querySelector('#display').textContent = '';
-    } else{
-        var display = document.querySelector('#display');
-        lastValue = operate(lastValue, currentValue, lastSymbol);
+    if(lastValue){
+        lastSymbol = currentSymbol;
+        currentSymbol = e.target.dataset.type;
+        lastValue = operate(lastValue, currentValue, lastSymbol)
         display.textContent = '';
         display.textContent = lastValue;
+        clearDisplay = true;
+    } else{
+        // Store the last number in lastValue
+        lastValue = display.textContent;
+        currentSymbol = e.target.dataset.type;
+        clearDisplay = true;   
     }
+    
 }
-function operate(main, sec, symb){
+function operate(last, current, symb){
     switch(symb){
         case '+':
-            main = +main + +sec;
+            last = +last + +current;
             break;
         case '-':
-            main -= sec;
+            last -= current;
             break;
         case '*':
-            main *= sec;
+            last *= current;
             break;
         case '/':
-            main /= sec;
+            last /= current;
             break;
     }
-    return main;
+    return last;
 }
 // find out how to acces the data-atributes
 // change variable names to lastValue to lastValue and currentValue
