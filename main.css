@@ -3,27 +3,36 @@
     --border: 3px solid white;
 }
 body{
-    background-color: black;
+    font-size: 1rem;
+    font-family: monospace;
+    background-color:rgba(92, 163, 11, 0.651);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 .case{
-    margin: auto;
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 275px;
     height: 400px;
     max-width: 400px;
-    max-height: 1000px;
+    max-height: 400px;
     border: var(--border);
-    border-radius: var(--corners);    
+    border-radius: var(--corners);  
+    background-color: rgb(47, 111, 141);
 }
 .display{
-    background-color: darkslateblue;
+    background-color:rgb(13, 65, 88);
     border-radius: var(--corners) var(--corners) 0 0;
     text-align: right;
     padding: 1rem;
     height: 1.5rem;
+    border-bottom: 3px solid white;
+    font-size: 2rem;
+    overflow: hidden;
     
 }
 .pad{
@@ -36,7 +45,7 @@ body{
     display: grid;
     grid-template-columns: repeat(3, minmax(3rem, 1fr));
     gap: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
     width: 11rem;
 }
 .symbols{
@@ -46,14 +55,17 @@ body{
     gap: 0.5rem;
     width: 4rem;
     justify-self: end;
-    margin: 1rem;
-
+    padding-right: 1rem;
 }
+.diffColor{
+    background-color: rgb(13, 65, 88);
+}
+
 .buttons{
     border: var(--border);
     border-radius: var(--corners);
-    width: 3rem;
-    height: 3rem;
+    width: 3.2rem;
+    height: 3.2rem;
     display: flex;
     justify-self: center;
     align-self: center;
@@ -63,6 +75,10 @@ body{
 }
 .buttons:hover{
     transform: scale(1.1);
+    background-color: rgb(80, 148, 180);
+}
+.diffColor:hover{
+    background-color: rgb(7, 78, 109);
 }
 
 
