@@ -1,3 +1,9 @@
+// Note!! The window keyboard event listener doesn't work as expected.
+// Due to the event the functions receive as parameter, the keyboard
+// event listener should have the whole code duplicated because the event 
+// isn't the same. Lesson: don't work with events on the parameters.
+
+
 let lastValue = null;
 let currentValue = null;
 let currentSymbol = null;
@@ -23,6 +29,7 @@ pointKey.addEventListener('click', () =>{
     if(!display.textContent.includes('.')) display.textContent += '.';
 });
 
+// Add an eventListener to the +/- key
 const switchSignKey = document.querySelector('div[data-type="!"]');
 switchSignKey.addEventListener('click', () =>{
     let operand = display.textContent;
@@ -38,6 +45,10 @@ switchSignKey.addEventListener('click', () =>{
     }
 });
 
+// Add event listeners to the keyboard keys and print its numeric values on the display
+window.addEventListener('keydown', printFromKeyboard);
+
+
 // FUNCTIONS
 function printOnDisplay(e){
     if(clearDisplay){
@@ -47,6 +58,16 @@ function printOnDisplay(e){
     let pressedKey = e.target;
     display.textContent += pressedKey.dataset.type;
     currentValue = display.textContent;
+}
+function printFromKeyboard(e){
+    // print on the display just the numeric keys
+    if(parseInt(e.keyCode) >= 96 && parseInt(e.keyCode) <= 105){
+        if(clearDisplay){
+            display.textContent = '';
+            clearDisplay = false;
+        }
+        display.textContent += e.key;
+    }
 }
 function storeSymbol(e){
     if(lastValue){
@@ -94,3 +115,4 @@ function clear(e){
         currentSymbol = null;
     }
 }
+
