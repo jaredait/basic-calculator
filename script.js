@@ -78,6 +78,9 @@ function operate(last, current, symb){
         case '/':
             current == 0 ? last = 'error' : last /= current;
             break;
+        case '%':
+            last /= 100;
+            break;
     }
     return last;
 }
@@ -91,5 +94,3 @@ function clear(e){
         currentSymbol = null;
     }
 }
-// find out how to acces the data-atributes
-// change variable names to lastValue to lastValue and currentValue
